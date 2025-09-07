@@ -82,10 +82,30 @@ En développant ce jeu de quiz, j'ai pu explorer et maîtriser :
 - **Structure de données** : Organisation des questions par niveaux avec métadonnées
 
 ### Défis rencontrés et solutions
-- **Gestion des états** : J'ai créé un système de screens avec show/hide pour organiser l'interface
-- **Timer précis** : Utilisation d'`setInterval()` avec nettoyage approprié pour éviter les fuites
-- **Feedback utilisateur** : Animation et coloration des boutons selon les réponses correctes/incorrectes
-- **Responsive design** : Adaptation de l'interface pour une expérience optimale sur mobile
+
+**1. Gestion des écrans multiples**
+- *Problème* : Comment basculer entre l'écran d'accueil, de jeu et de résultats
+- *Solution* : J'ai utilisé des classes CSS `.hidden` avec `display: none` et des fonctions JavaScript pour montrer/cacher les sections
+
+**2. Timer qui ne s'arrête pas**
+- *Problème* : Le timer continuait à tourner même après avoir répondu
+- *Solution* : J'ai appris à utiliser `clearInterval()` pour arrêter le timer et éviter les bugs
+
+**3. Réponses toujours en position B**
+- *Problème* : Les bonnes réponses étaient souvent en 2ème position, rendant le jeu prévisible
+- *Solution* : J'ai créé une fonction pour mélanger les réponses de façon aléatoire tout en gardant le bon index
+
+**4. Boutons qui restent cliquables**
+- *Problème* : On pouvait cliquer plusieurs fois sur les réponses après avoir déjà répondu
+- *Solution* : J'ai ajouté `btn.disabled = true` pour désactiver les boutons après sélection
+
+**5. Affichage mobile**
+- *Problème* : L'interface était difficile à utiliser sur téléphone
+- *Solution* : J'ai utilisé des media queries CSS pour adapter la taille des boutons et textes
+
+**6. Écran de jeu visible au chargement**
+- *Problème* : Des éléments du jeu (timer, scores) apparaissaient dès l'arrivée sur le site
+- *Solution* : J'ai corrigé les règles CSS pour s'assurer que seul l'écran d'accueil soit visible initialement
 
 ### Compétences en logique
 - **Conditions multiples** : Validation des réponses avec switch/case
@@ -101,7 +121,7 @@ Ce projet étant un exercice d'apprentissage, plusieurs améliorations pourraien
 - 🎵 **Effets sonores** : Sons pour bonnes/mauvaises réponses et fin de jeu
 - 🎨 **Thèmes visuels** : Changement de couleurs selon le niveau (Québec=bleu, Canada=rouge, Monde=vert)
 - 📈 **Statistiques étendues** : Temps moyen par question, questions les plus difficiles
-- 🔀 **Questions aléatoires** : Mélange des questions et réponses pour plus de rejouabilité
+- 🔀 **Mélange des questions** : Ordre aléatoire des questions dans chaque niveau
 
 ### À long terme
 - 🗄️ **Base de données étendue** : Plus de questions et de nouveaux thèmes (histoire, sport)

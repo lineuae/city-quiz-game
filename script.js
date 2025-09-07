@@ -114,7 +114,8 @@ let currentGame = {
     },
     timer: null,              // Timer de la question
     timeRemaining: 30,        // Temps restant
-    gameCompleted: false      // Jeu terminé
+    gameCompleted: false,     // Jeu terminé
+    currentCorrectIndex: 0    // Index correct après mélange des réponses
 };
 
 const gameConfig = {
@@ -220,7 +221,8 @@ function initGame() {
         levelScores: { quebec: 0, canada: 0, world: 0 },
         timer: null,
         timeRemaining: gameConfig.questionTime,
-        gameCompleted: false
+        gameCompleted: false,
+        currentCorrectIndex: 0
     };
     
     console.log('🎮 Nouvelle partie initialisée');
@@ -234,6 +236,29 @@ function startGame() {
     showScreen('game');
     loadQuestion();
     console.log('🚀 Jeu démarré');
+}
+
+/**
+ * Mélange les réponses et retourne le nouvel index de la bonne réponse
+ * @param {Array} answers - Tableau des réponses
+ * @param {number} correctIndex - Index original de la bonne réponse
+ * @returns {Object} - Objet contenant les réponses mélangées et le nouvel index correct
+ */
+function shuffleAnswers(answers, correctIndex) {
+    // Créer un tableau d'objets avec réponse et index original
+    const answersWithIndex = answers.map((answer, index) => ({ answer, originalIndex: index }));
+    
+    // Mélanger le tableau
+    const shuffled = shuffleArray(answersWithIndex);
+    
+    // Trouver le nouvel index de la bonne réponse
+    const newCorrectIndex = shuffled.findIndex(item => item.originalIndex === correctIndex);
+    
+    // Retourner seulement les réponses mélangées et le nouvel index
+    return {
+        shuffledAnswers: shuffled.map(item => item.answer),
+        newCorrectIndex: newCorrectIndex
+    };
 }
 
 /**
@@ -251,13 +276,16 @@ function loadQuestion() {
     // Afficher la question
     gameElements.questionText.textContent = question.question;
     
-    // Mélanger et afficher les réponses
-    const shuffledAnswers = question.answers.map((answer, index) => ({ answer, index }));
-    // Note: Pour un débutant, on garde l'ordre fixe pour la simplicité
+    // Mélanger les réponses pour rendre le jeu plus équitable
+    const { shuffledAnswers, newCorrectIndex } = shuffleAnswers(question.answers, question.correct);
     
+    // Stocker le nouvel index correct pour cette question
+    currentGame.currentCorrectIndex = newCorrectIndex;
+    
+    // Afficher les réponses mélangées
     gameElements.answerButtons.forEach((btn, index) => {
         const answerText = btn.querySelector('.answer-text');
-        answerText.textContent = question.answers[index];
+        answerText.textContent = shuffledAnswers[index];
         btn.disabled = false;
         btn.className = 'answer-btn'; // Reset classes
     });
@@ -337,7 +365,8 @@ function selectAnswer(selectedIndex) {
     stopTimer();
     
     const question = questionsData[currentGame.level][currentGame.questionIndex];
-    const isCorrect = selectedIndex === question.correct;
+    // Utiliser le nouvel index correct après mélange
+    const isCorrect = selectedIndex === currentGame.currentCorrectIndex;
     
     // Mettre à jour le score
     if (isCorrect) {
@@ -346,7 +375,7 @@ function selectAnswer(selectedIndex) {
     }
     
     // Afficher le feedback
-    showAnswerFeedback(selectedIndex, question.correct, question.explanation);
+    showAnswerFeedback(selectedIndex, currentGame.currentCorrectIndex, question.explanation);
     
     // Désactiver tous les boutons
     gameElements.answerButtons.forEach(btn => btn.disabled = true);
