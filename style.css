@@ -157,6 +157,9 @@ h1 {
 #gameScreen {
     align-items: flex-start;
     padding: 0;
+}
+
+#gameScreen:not(.hidden) {
     display: block;
 }
 
