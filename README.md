@@ -1,5 +1,7 @@
 # 🌍 Quiz Géographique - Devinez la Ville
 
+[![Jouer au Quiz](https://img.shields.io/badge/🎮_Jouer_au_Quiz-blue?style=for-the-badge)](https://city-quiz-game.onrender.com)
+
 > Jeu de quiz interactif pour tester ses connaissances géographiques  
 > Développé par Lamine
 
