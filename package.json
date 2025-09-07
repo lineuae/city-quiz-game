@@ -1,0 +1,28 @@
+{
+  "name": "city-quiz-game-lamine",
+  "version": "1.0.0",
+  "description": "Jeu de quiz géographique interactif - HTML, CSS, JavaScript",
+  "main": "index.html",
+  "scripts": {
+    "start": "echo 'Jeu de quiz prêt'",
+    "build": "echo 'Aucun build requis'"
+  },
+  "keywords": [
+    "quiz",
+    "game",
+    "geography",
+    "vanilla-javascript",
+    "html",
+    "css",
+    "interactive",
+    "web-game",
+    "education"
+  ],
+  "author": "Lamine",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/lineuae/city-quiz-game.git"
+  },
+  "homepage": "https://city-quiz-game-lamine.onrender.com"
+}

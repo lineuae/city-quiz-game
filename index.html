@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Géographique - Devinez la Ville</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🌍 Quiz Géographique</h1>
+            <p class="subtitle">Testez vos connaissances des villes du monde</p>
+        </header>
+
+        <main>
+            <!-- Écran d'accueil -->
+            <section id="homeScreen" class="screen">
+                <div class="welcome-card">
+                    <div class="welcome-icon">🎯</div>
+                    <h2>Bienvenue au Quiz des Villes</h2>
+                    <p class="welcome-text">
+                        Découvrez et testez vos connaissances géographiques à travers 3 niveaux de difficulté !
+                    </p>
+                    
+                    <div class="levels-info">
+                        <div class="level-item">
+                            <span class="level-icon">🏛️</span>
+                            <strong>Québec</strong> - 5 questions sur les villes québécoises
+                        </div>
+                        <div class="level-item">
+                            <span class="level-icon">🍁</span>
+                            <strong>Canada</strong> - 5 questions sur les villes canadiennes
+                        </div>
+                        <div class="level-item">
+                            <span class="level-icon">🌎</span>
+                            <strong>Monde</strong> - 5 questions sur les villes internationales
+                        </div>
+                    </div>
+
+                    <button id="startGameBtn" class="btn-primary">
+                        🎮 Commencer le Quiz
+                    </button>
+                </div>
+            </section>
+
+            <!-- Écran de jeu -->
+            <section id="gameScreen" class="screen hidden">
+                <div class="game-header">
+                    <div class="game-info">
+                        <div class="level-indicator">
+                            <span id="currentLevel">Québec</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div id="progressFill" class="progress-fill"></div>
+                            <span id="questionCounter">Question 1/5</span>
+                        </div>
+                        <div class="score-display">
+                            <span id="currentScore">Score: 0</span>
+                        </div>
+                    </div>
+                    
+                    <div class="timer-container">
+                        <div class="timer-circle">
+                            <span id="timerDisplay">30</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="question-card">
+                    <h3 id="questionText">Question apparaîtra ici...</h3>
+                    
+                    <div class="answers-container">
+                        <button class="answer-btn" data-index="0">
+                            <span class="answer-letter">A</span>
+                            <span class="answer-text">Réponse A</span>
+                        </button>
+                        <button class="answer-btn" data-index="1">
+                            <span class="answer-letter">B</span>
+                            <span class="answer-text">Réponse B</span>
+                        </button>
+                        <button class="answer-btn" data-index="2">
+                            <span class="answer-letter">C</span>
+                            <span class="answer-text">Réponse C</span>
+                        </button>
+                        <button class="answer-btn" data-index="3">
+                            <span class="answer-letter">D</span>
+                            <span class="answer-text">Réponse D</span>
+                        </button>
+                    </div>
+
+                    <div id="feedback" class="feedback hidden">
+                        <div class="feedback-content">
+                            <span class="feedback-icon"></span>
+                            <span class="feedback-text"></span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Écran de résultats -->
+            <section id="resultsScreen" class="screen hidden">
+                <div class="results-card">
+                    <div class="results-icon">🏆</div>
+                    <h2 id="resultsTitle">Félicitations !</h2>
+                    
+                    <div class="final-score">
+                        <div class="score-circle">
+                            <span id="finalScore">0</span>
+                            <small>/ 15</small>
+                        </div>
+                    </div>
+
+                    <div class="results-details">
+                        <div class="result-item">
+                            <span class="result-label">🏛️ Québec:</span>
+                            <span id="quebecScore">0/5</span>
+                        </div>
+                        <div class="result-item">
+                            <span class="result-label">🍁 Canada:</span>
+                            <span id="canadaScore">0/5</span>
+                        </div>
+                        <div class="result-item">
+                            <span class="result-label">🌎 Monde:</span>
+                            <span id="worldScore">0/5</span>
+                        </div>
+                    </div>
+
+                    <div class="performance-message">
+                        <p id="performanceText">Excellent travail !</p>
+                    </div>
+
+                    <div class="results-actions">
+                        <button id="playAgainBtn" class="btn-primary">
+                            🔄 Recommencer
+                        </button>
+                        <button id="shareScoreBtn" class="btn-secondary">
+                            📤 Partager le Score
+                        </button>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p class="footer-text">
+                Développé par Lamine • Quiz géographique éducatif
+            </p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
